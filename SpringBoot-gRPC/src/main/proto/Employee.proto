@@ -20,3 +20,34 @@ message Department {
   int32 id = 1;
   string name = 2;
 }
+
+/*
+ // Similar to DTO in Java for Request
+  message EmployeeRequest {
+    int32 id = 1;
+    string name = 2;
+  }
+
+  // Similar to DTO in Java for Response
+  message EmployeeResponse {
+    int32 id = 1;
+    string name = 2;
+  }
+*/
+ // creating rpc response as List<Employee>
+  message EmployeeList{
+    repeated Employee employees = 1;
+  }
+  message Empty {
+  }
+
+ service EmployeeService {
+   // get Employee by Id
+   rpc getEmployee(Employee) returns (Employee);
+
+   // add an Employee
+   rpc addEmployee(Employee) returns (Employee);
+
+   // get all Employees
+   rpc getAllEmployees(Empty) returns (EmployeeList);
+ }
